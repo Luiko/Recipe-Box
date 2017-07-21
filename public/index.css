@@ -1,0 +1,80 @@
+header {
+  margin: 50px;
+}
+
+.container {
+  margin-top: 10px;
+}
+
+@-o-keyframes delete {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -o-transform: translate(300px);
+    -webkit-transform: translate(300px);
+    transform: translate(300px);
+  }
+}
+@-webkit-keyframes delete {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(300px);
+    transform: translate(300px);
+  }
+}
+@keyframes delete {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -ms-transform: translate(300px);
+    -webkit-transform: translate(300px);
+    transform: translate(300px);
+  }
+}
+.row {
+  border: 3px solid #989898;
+  border-left-width: 24px;
+  border-right: 16px solid #6FDFB4;
+  padding: 4px 2px;
+}
+.row:first-child {
+  border-radius: 4px 4px 0 0;
+  border-top-width: 12px;
+}
+.row:last-child {
+  border-radius: 0 0 4px 4px;
+  border-bottom-width: 24px;
+}
+
+dt {
+  border-radius: 6px;
+}
+
+dd p {
+  border-radius: 3px;
+  padding: 4px;
+  margin: 6px;
+}
+dd button {
+  margin: 3px;
+}
+dd > div > button + div {
+  display: inline-block;
+}
+
+.delete-recipe {
+  -o-animation: delete 666ms;
+  -webkit-animation: delete 666ms;
+  animation: delete 666ms;
+}
+
+footer {
+  margin: 140px 0;
+}

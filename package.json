@@ -1,0 +1,56 @@
+{
+  "name": "recipe-box",
+  "version": "1.0.0",
+  "description": "save the recipes you like more",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.t*",
+    "test-db": "nodemon database.t*",
+    "tape": "tape *.test.js",
+    "build": "babel src -d lib && webpack --config webpack.config.js",
+    "build-p": "babel src -d lib && webpack --env.production --config webpack-p.config.js",
+    "build-w": "babel src -d lib && webpack --env.platform=web --config webpack-p.config.js",
+    "build-db": "node database init",
+    "bundle": "webpack"
+  },
+  "keywords": [
+    "fcc",
+    "project"
+  ],
+  "author": "Luiko",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.1",
+    "react-dom": "^15.6.1",
+    "sqlite": "^2.8.0",
+    "webpack": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.4",
+    "eslint": "^4.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "file-loader": "^0.11.2",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
+    "resolve-url-loader": "^2.1.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "supertest": "^3.0.0",
+    "tape": "^4.7.0",
+    "url-loader": "^0.5.9"
+  }
+}

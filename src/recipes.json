@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Mango con chile",
+    "ingredients": ["mango", "salt", "lemon", "chilli powder"]
+  },
+  {
+    "name": "Pumpkin Pie",
+    "ingredients": [
+      "Pumpkin Puree",
+      "weetened Condensed Milk",
+      "Eggs",
+      "Pumpkin Pie Spice",
+      "Pie Crust"
+    ]
+  },
+  {
+    "name": "Spaghetti",
+    "ingredients": ["Noodles", "Tomato Sauce", "(Optional) Meatballs"]
+  },
+  {
+    "name": "Onion Pie",
+    "ingredients": ["Onion", "Pie Crust"]
+  }
+]
