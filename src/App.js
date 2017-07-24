@@ -144,7 +144,7 @@ class IngredientsForm extends Component {
     this.setState({ deleteRecipeAnimation: true });
     setTimeout(() => {
       this.props.deleteRecipe(this.props.recipe.name);
-    }, 111);
+    }, 666);
   }
 
   ingredientsChanged(nextRecipe) {
@@ -304,34 +304,38 @@ class App extends Component {
     const method =
       action === 'addRecipe'? 'POST': action === 'editRecipe'? 'PUT' : null
     ;
+    const prevRecipes = this.state.recipes;
+    this.setState(function (prevState) {
+      let { recipes } = prevState;
+      if (action === 'addRecipe') 
+        recipes = [ ...prevState.recipes, recipe ];
+      if (action === 'editRecipe') {
+        recipes = recipes.map(_recipe => {
+          if (_recipe.name === recipe.name) return recipe;
+          else return _recipe;
+        });
+      }
+      recipes = eraseInvalidIngredients(recipes);
+      this.saveRecipes(recipes);
+      return { recipes };
+    });
     const ajax = new XMLHttpRequest();
     ajax.open(method, '/' + recipe.name, true);
     ajax.setRequestHeader('Content-type', 'application/json');
     ajax.addEventListener('load',() => {
-      if (ajax.status > 399)
-        return console.error(
+      if (ajax.status > 399) {
+        console.error(
           ErrorEvent.name,
           'modification request',
           'status',
           ajax.status
         );
-      this.setState(function (prevState) {
-        let { recipes } = prevState;
-        if (action === 'addRecipe') 
-          recipes = [ ...prevState.recipes, recipe ];
-        if (action === 'editRecipe') {
-          recipes = recipes.map(_recipe => {
-            if (_recipe.name === recipe.name) return recipe;
-            else return _recipe;
-          });
-        }
-        recipes = eraseInvalidIngredients(recipes);
-        this.saveRecipes(recipes);
-        return { recipes };
-      });
+        this.setState({ recipes: prevRecipes });
+      }
     });
     ajax.addEventListener('error', () => {
       console.error(Error.name,'connection lost');
+      this.setState({ recipes: prevRecipes });
     });
     ajax.send(JSON.stringify(recipe));
   }
@@ -345,21 +349,24 @@ class App extends Component {
   }
 
   deleteRecipe(recipe) {
+    const prevRecipes = this.state.recipes;
+    this.setState(function (prevState) {
+      const recipes = prevState.recipes
+        .filter(_recipe => _recipe.name !== recipe);
+      this.saveRecipes(recipes);
+      return { recipes };
+    });
     const ajax = new XMLHttpRequest();
     ajax.open('DELETE', '/' + recipe, true);
     ajax.addEventListener('load',() => {
-      if (ajax.status > 399)
-        return console.error(ErrorEvent.name, 'delete request');
-      // console.log(ajax.response);
-      this.setState(function (prevState) {
-        const recipes = prevState.recipes
-          .filter(_recipe => _recipe.name !== recipe);
-        this.saveRecipes(recipes);
-        return { recipes };
-      });
+      if (ajax.status > 399) {
+        console.error(ErrorEvent.name, 'delete request');
+        this.setState({ recipes: prevRecipes });
+      }
     });
     ajax.addEventListener('error', () => {
-      console.log(Error.name,'connection lost');
+      console.error(Error.name,'connection lost');
+      this.setState({ recipes: prevRecipes });
     });
     ajax.send(null);
   }
