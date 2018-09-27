@@ -1,6 +1,7 @@
-.data/*
+.data
 .vscode
 *.dia
 node_modules
 public/*.js
 lib/*.js
+codepen

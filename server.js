@@ -91,7 +91,7 @@ function template(clientApp) {
     <main id="root">${clientApp}</main>
     <footer>
       <p class="text-center">
-        Copyright &copy; 2017 invoked by 
+        Copyright &copy; 2017-2018 invoked by 
         <a href="https://github.com/Luiko">luiko</a>
       </p>
     </footer>
